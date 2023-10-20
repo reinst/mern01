@@ -1,0 +1,6 @@
+{
+    "name": "Tut App - Prod",
+    "mail": {
+        "host": "prod-mail-server"
+    }
+}
