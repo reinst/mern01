@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Joi = require('joi');
-const Course = require('../database/databaseSchema');
+const Course = require('../models/course');
 
 
 router.get("/", async (req, res) => {

@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const helmet = require('helmet');
 const logger = require('./middleware/logger');
 const courses = require('./routes/courses');
+const users = require('./routes/users');
 const express = require('express');
 const run = require('./database/databaseConnect');
 const app = express();
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use(helmet());
 app.use(logger);
 app.use('/api/courses', courses);
+app.use('/api/users', users);
 
 
 // app.get('/test', (req, res) => {
