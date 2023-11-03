@@ -5,6 +5,8 @@ const helmet = require('helmet');
 const logger = require('./middleware/logger');
 const courses = require('./routes/courses');
 const users = require('./routes/users');
+const auth = require('./routes/auth');
+
 const express = require('express');
 const run = require('./database/databaseConnect');
 const app = express();
@@ -15,6 +17,7 @@ app.use(helmet());
 app.use(logger);
 app.use('/api/courses', courses);
 app.use('/api/users', users);
+app.use('/api/auth', auth);
 
 
 // app.get('/test', (req, res) => {
