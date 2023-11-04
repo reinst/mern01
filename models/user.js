@@ -42,5 +42,20 @@ function validateUser(user) {
   return schema.validate(user);
 }
 
+
+function validateAuth(auth) {
+  const schema = Joi.object({
+    email: Joi.string().min(5).max(255).trim().required().email(),
+    password: Joi.string().min(5).max(1024).required(),
+  });
+
+  return schema.validate(auth);
+}
+
+
+// Using validate as a namespace
 module.exports.User = User;
-module.exports.validate = validateUser;
+module.exports.validate = {
+  user: validateUser,
+  auth: validateAuth,
+};

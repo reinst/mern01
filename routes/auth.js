@@ -1,10 +1,12 @@
-const { User } = require('../models/user');
+const { User, validate } = require('../models/user');
 const bcrypt = require('bcrypt');
 const express = require('express');
 const router = express.Router();
 
 // Authentication Endpoint
 router.post('/', async (req, res) => {
+    const { error } = validate.auth(req.body);
+    if (error) return res.status(400).send(error.details[0].message);
     try {
         // Find the user by email
         const user = await User.findOne({ email: req.body.email });
