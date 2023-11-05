@@ -1,5 +1,6 @@
 {
     "mail": {
         "password": "TUT_PASSWORD"
-    }
+    },
+    "jwtPrivateKey": "TRAIN_jwtPrivateKey"
 }

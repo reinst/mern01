@@ -19,7 +19,10 @@ app.use('/api/courses', courses);
 app.use('/api/users', users);
 app.use('/api/auth', auth);
 
-
+if (!config.get('jwtPrivateKey')) {
+    console.error('FATAL ERROR: jwtPrivateKey is not defined.');
+    process.exit(1);
+}
 // app.get('/test', (req, res) => {
 //     res.send('Test route');
 //   });

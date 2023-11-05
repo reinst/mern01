@@ -6,7 +6,7 @@ const saltRounds = 10;
 
 
 router.post('/', async (req, res) => {
-    const { error } = validate(req.body);
+    const { error } = validate.user(req.body);
     if (error) return res.status(400).send(error.details[0].message);
     try {
         const existingUser = await User.findOne({ email: req.body.email });
