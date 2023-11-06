@@ -20,13 +20,13 @@ router.post('/', async (req, res) => {
 
         // Upon successful authentication, create a token
         const token = jwt.sign(
-            { _id: user._id, email: user.email }, // You can include any user-specific information here
+            { name: user.name, email: user.email }, // You can include any user-specific information here
             config.get('jwtPrivateKey'), // The secret key for signing the token
             { expiresIn: '2h' } // Optional: configure the token to expire in 2 hours
         );
-
+        res.header('x-auth-token', token);
         // Send the token to the user
-        res.send({ token: token }); // You could also include additional user information if needed
+        res.send('Succeded \n'); // You could also include additional user information if needed
     } catch (error) {
         console.error(error);
         res.status(500).send('Something went wrong during authentication.');

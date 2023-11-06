@@ -1,3 +1,4 @@
+const auth = require('../middleware/auth');
 const express = require('express');
 const router = express.Router();
 const Course = require('../models/course');
@@ -13,7 +14,7 @@ router.get("/", async (req, res) => {
 });
 
 
-router.post("/", async (req, res) => {
+router.post("/", auth, async (req, res) => {
     try {
         const newCourse = await Course.create({
             name: req.body.name,
@@ -41,7 +42,7 @@ router.get("/:id", async (req, res) => {
 });
 
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', auth, async (req, res) => {
     try {
         const course = await Course.findByIdAndUpdate(
             req.params.id,
@@ -56,7 +57,7 @@ router.put('/:id', async (req, res) => {
 });
 
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
     try {
         const course = await Course.findByIdAndDelete(req.params.id);
         if (!course) return res.status(404).send('Document not found');

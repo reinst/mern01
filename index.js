@@ -11,6 +11,10 @@ const express = require('express');
 const run = require('./database/databaseConnect');
 const app = express();
 
+if (!config.get('jwtPrivateKey')) {
+    console.error('FATAL ERROR: jwtPrivateKey is not defined.');
+    process.exit(1);
+}
 run();
 app.use(express.json());
 app.use(helmet());
@@ -19,20 +23,6 @@ app.use('/api/courses', courses);
 app.use('/api/users', users);
 app.use('/api/auth', auth);
 
-if (!config.get('jwtPrivateKey')) {
-    console.error('FATAL ERROR: jwtPrivateKey is not defined.');
-    process.exit(1);
-}
-// app.get('/test', (req, res) => {
-//     res.send('Test route');
-//   });
-
-//####### SETUP ##########
-
-// if (app.get('env') === 'development') {
-//     app.use(morgan('tiny'));
-//     console.log('Morgan is enabled...')
-// }
 
 const port = process.env.PORT || 3002;
 app.listen(port, () => console.log(`Listening on port: ${port}`));         
