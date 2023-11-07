@@ -1,7 +1,7 @@
 const auth = require('../middleware/auth');
 const express = require('express');
 const router = express.Router();
-const Course = require('../models/course');
+const { Course } = require('../models/course');
 
 
 router.get("/", async (req, res) => {
@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
 });
 
 
-router.post("/", auth, async (req, res) => {
+router.post("/", async (req, res) => {
     try {
         const newCourse = await Course.create({
             name: req.body.name,

@@ -11,17 +11,15 @@ const express = require('express');
 const run = require('./database/databaseConnect');
 const app = express();
 
-if (!config.get('jwtPrivateKey')) {
-    console.error('FATAL ERROR: jwtPrivateKey is not defined.');
-    process.exit(1);
-}
+
 run();
 app.use(express.json());
-app.use(helmet());
+//app.use(helmet());
 app.use(logger);
 app.use('/api/courses', courses);
 app.use('/api/users', users);
 app.use('/api/auth', auth);
+
 
 
 const port = process.env.PORT || 3002;

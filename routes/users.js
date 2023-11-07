@@ -21,7 +21,6 @@ router.post('/', async (req, res) => {
         });
 
         const result = {
-            _id: user._id,
             name: user.name,
             email: user.email,
         };
